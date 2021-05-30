@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>회원가입</h1>
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <br>
+        <br>
+        {% if error %}
+            <p>{{error}}</p>
+            <br>
+        {% endif %}    
+        <h3>사용자 이름</h3>
+        <input name="username" type="text">
+        <br>
+        <br>
+        <h3>이메일 주소</h3>
+        <input name="email_address" type="text">
+        <br>
+        <br>
+        <h3>비밀번호</h3>
+        <br>
+        <input name="password" type="password">
+        <br>
+        <br>
+        <h3>비밀번호 확인</h3>
+        <input  name="passwordCheck" type="password">
+        <br>
+        <br>
+        <input type="submit" value="제출하기">
+    </form>
+{% endblock %}

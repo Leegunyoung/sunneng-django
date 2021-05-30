@@ -1,4 +1,5 @@
-<div class="container">
+{% extends 'base.html' %}
+{% block content %}
     <form action="{% url 'create' %}"  method="GET">
         <h4>제목:</h4>
         <input type="text" name="title">
@@ -12,5 +13,4 @@
 
 
     </form>
-
-</div>
+{% endblock %}

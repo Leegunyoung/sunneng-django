@@ -1,63 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="{% url 'new' %}">글쓰기</a>
-              <a class="nav-link" href="{% url 'Aboutme' %}">Aboutme</a>
-              <a class="nav-link" href="#">Pricing</a>
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">disabled</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div class="container">
-        <label for="customRange3" class="form-label">나에 대해 알아봐!</label>
-        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
-        <form action="" method="GET">
-            <h4>1.나의 이름은:이건영</h4>
-            <br>
-            <h4>2.내 고향은:전주</h4>
-            <br>
-            <h4>3.나의 학교와 학과는"한국항공대학교 소프트웨어학과"</h4>
-            <br>
-            <h4>4.내가 가장 좋아하는 음식은?"술!"</h4>
-            <br>
-            <h4>5.나의 MBTI?ENFJ!</h4>
-            <br>
-            <h4>6.내가 맡고 있는 프로젝트는?팀빌!!</h4>
-            <br>
-            <h4>7.내가 제일 좋아하는건?사람 만나는 거 ㅎㅎ</h4>
-            <br>
-            <h4>8.내 전화번호:010-5644-9390</h4>
-            <br>
-            <h4>9.내가 제일 좋아하는 운동은?야구,축구</h4>
-            <br>
-            <h4>10.내 나이는?23살</h4>
-            <br>
-            
-                
-                
-
-            
-       
-        
-        </form>
-    </div>
+{% extends 'base.html' %}
+{% block content %}
+  <label for="customRange3" class="form-label">나에 대해 알아봐!</label>
+  <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+  <form action="" method="POST">
+      <h4>1.사용자이름:{{user.username}}</h4>
+      <br>
+      <h3>2.사용자 이메일주소:{{user.email}}</h3>
+      <br>
+      <h4>3.나의 학교와 학과는"한국항공대학교 소프트웨어학과"</h4>
+      <br>
+      <h4>4.내가 맡고 있는 프로젝트는?팀빌!!</h4>
+      <br>
+      <h4>5.내가 제일 좋아하는건?사람 만나는 거 ㅎㅎ</h4>
+      <br>
+      <h4>6.진짜 우리집 주소!</h4>
+      <br>
+  </form>
+  <div id="map" style="width:500px;height:400px;"></div>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ac50c6ee34871ede6e40145f1e13203"></script>
+  <script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = { 
+            center: new kakao.maps.LatLng(35.9388937,126.9678051), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
     
-</body>
-</html>
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    
+    // 마커가 표시될 위치입니다 
+    var markerPosition  = new kakao.maps.LatLng(35.9388937,126.9678051); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+    
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+    
+    // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+    // marker.setMap(null);    
+    </script>
+
+{% endblock %}
