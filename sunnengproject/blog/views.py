@@ -3,8 +3,7 @@ from .models import Blog
 from django.utils import timezone
 from django.core.paginator import Paginator
 # Create your views here.
-def hello(request):
-    return render(request, "hello.html")
+
 
 def home(request):
     blogs = Blog.objects
@@ -22,9 +21,6 @@ def detail(request, blog_id):
 
 def new(request):
     return render(request, 'new.html')
-
-def Aboutme(request):
-    return render(request, 'Aboutme.html')
 
 def create(request):
     blog=Blog()
